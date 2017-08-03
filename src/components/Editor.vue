@@ -1,8 +1,9 @@
 <template>
   <div id="editor">
+      <!-- 导航 -->
       <nav>
           <ol>
-              <li v-for="i in [0,1,2,3,4]"
+              <li v-for="i in [0,1,2,3,4,5]"
                   v-bind:class="{active: currentTab === i}"
                   v-on:click="currentTab = i">
                   <svg class="icon">
@@ -11,27 +12,86 @@
               </li>
           </ol>
       </nav>
+      <!-- Tab列表 -->
       <ol class="panes">
-          <li v-for="i in [0,1,2,3,4]" v-bind:class="{active: currentTab === i}">
-              Tab{{i+1}}
+          <li v-bind:class="{active: currentTab === 0}">
+              <h2>个人信息</h2>
+              <el-form>
+                <el-form-item label="姓名">
+                    <el-input v-model="profile.name"></el-input>
+                </el-form-item>
+                <el-form-item label="城市">
+                    <el-input v-model="profile.city"></el-input>
+                </el-form-item>
+                <el-form-item label="出生年月">
+                    <el-input v-model="profile.birth"></el-input>
+                </el-form-item>
+              </el-form>
+          </li>
+          <li v-bind:class="{active: currentTab === 1}">
+              <h2>工作经历</h2>
+              <el-form>
+                  <div class="container" v-for="(work,index) in workExperience">
+                      <el-form-item label="公司">
+                        <el-input v-model="work.company"></el-input>
+                      </el-form-item>
+                      <el-form-item label="工作内容">
+                        <el-input v-model="work.content"></el-input>
+                      </el-form-item>
+                      <i class="el-icon-circle-close" v-on:click="removeWorkExperience(index)"></i>
+                      <hr> 
+                  </div>
+                  <el-button type="primary" v-on:click="addWorkExperience">添加一项</el-button>
+              </el-form>
+          </li>
+          <li v-bind:class="{active: currentTab === 2}">
+              <h2>学习经历</h2>
+          </li>
+          <li v-bind:class="{active: currentTab === 3}">
+              <h2>项目经历</h2>
+          </li>
+          <li v-bind:class="{active: currentTab === 4}">
+              <h2>获奖情况</h2>
+          </li>
+          <li v-bind:class="{active: currentTab === 5}">
+              <h2>联系方式</h2>
           </li>
       </ol>
   </div>
 </template>
 
-<<script>
+<script>
 export default {
   data(){
       return{
           currentTab: 0,
-          icons: ['id-card','WORK','Book-Open','heart','phone']
+          icons: ['id-card','WORK','Book-Open','heart','jiangbei','phone'],
+          profile: {
+              name: '',
+              city: '',
+              birth: ''
+          },
+          workExperience: [
+              {company: '', content: ''},
+          ]
       }
+   },
+   methods:{
+       addWorkExperience(){
+           this.workExperience.push({
+               company: '', content: ''
+           })
+       },
+       removeWorkExperience(index){
+           this.workExperience.splice(index,1)
+       }
    }
+
 }
 </script>
 
 
-<<style lang="scss">
+<style lang="scss">
     #editor{
         min-height: 100px;
         display: flex;
@@ -55,8 +115,23 @@ export default {
             }
         }
         > .panes{
+            flex: 1;
+            .container{
+                position: relative;
+                .el-icon-circle-close{
+                    position: absolute;
+                    right: 0; 
+                    top: 0;
+                }
+            }
             > li{
                 display: none;
+                padding: 48px;
+                height: 100%;
+                overflow: auto;
+                > .el-form{
+                    width: 100%;
+                }
                 &.active{
                     display: block;
                 }
