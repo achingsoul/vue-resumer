@@ -15,22 +15,22 @@
       <!-- Tab列表 -->
       <ol class="panes">
           <li v-bind:class="{active: currentTab === 0}">
-              <ProfileEditor v-bind:profile="profile"/>
+              <ProfileEditor v-bind:profile="resume.profile"/>
           </li>
           <li v-bind:class="{active: currentTab === 1}">
-              <WorkExperienceEditor v-bind:workExperience="workExperience"/>
+              <ArrayEditor v-bind:items="resume.workExperience" v-bind:labels="{company:'公司', content:'工作内容'}" title="工作经历"/>
           </li>
           <li v-bind:class="{active: currentTab === 2}">
-              <h2>学习经历</h2>
+              <ArrayEditor v-bind:items="resume.studyHistory" v-bind:labels="{school:'学校', duration:'时间', degree:'学位'}" title="学习经历"/>
           </li>
           <li v-bind:class="{active: currentTab === 3}">
-              <h2>项目经历</h2>
+              <ArrayEditor v-bind:items="resume.projectHistory" v-bind:labels="{name:'项目名称', content:'项目内容'}" title="项目经历"/>
           </li>
           <li v-bind:class="{active: currentTab === 4}">
-              <h2>获奖情况</h2>
+              <ArrayEditor v-bind:items="resume.awardsHistory" v-bind:labels="{award:'奖项', content:'详情'}" title="获奖情况"/>
           </li>
           <li v-bind:class="{active: currentTab === 5}">
-              <h2>联系方式</h2>
+              <ContactMeEditor v-bind:contactMe="resume.contactMe"/>
           </li>
       </ol>
   </div>
@@ -38,21 +38,16 @@
 
 <script>
 import ProfileEditor from './ProfileEditor'
-import WorkExperienceEditor from './WorkExperienceEditor'
+import ArrayEditor from './ArrayEditor'
+import ContactMeEditor from './ContactMeEditor'
 export default {
-    components:{ProfileEditor,WorkExperienceEditor},
+  components:{ProfileEditor,ArrayEditor,ContactMeEditor},
+  props: ['resume'],
   data(){
       return{
           currentTab: 0,
           icons: ['id-card','WORK','Book-Open','heart','jiangbei','phone'],
-          profile: {
-              name: '',
-              city: '',
-              birth: ''
-          },
-          workExperience: [
-              {company: '', content: ''},
-          ]
+          
       }
    },
    methods:{
@@ -90,7 +85,7 @@ export default {
             flex: 1;
             .container{
                 position: relative;
-                .el-icon-circle-close{
+                .el-icon-delete2{
                     position: absolute;
                     right: 0; 
                     top: 0;

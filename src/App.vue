@@ -2,8 +2,8 @@
   <div id="app">
    <Topbar class="topbar"/>
    <main>
-     <Editor class="editor"/>
-     <Preview class="preview"/>
+     <Editor v-bind:resume="resume" class="editor"/>
+     <Preview v-bind:resume="resume" class="preview"/>
    </main>
   </div>
 </template>
@@ -13,6 +13,32 @@
   import Editor from './components/Editor'
   import Preview from './components/Preview'
   export default {
+    data(){
+      return{
+        resume: {
+          profile: {
+              name: '',
+              city: '',
+              birth: ''
+          },
+          workExperience: [
+              {company: '', content: ''},
+          ],
+          studyHistory: [
+              {school: '', duration: '', degree: ''},
+          ],
+          projectHistory: [
+              {name: '', content: ''}
+          ],
+          awardsHistory: [
+              {award: '', content: ''}
+          ],
+          contactMe: [
+              {phone: '', qq: '', email: '', wechat: ''}
+          ]
+        }
+      }
+    },
     components: {
       Topbar,Editor,Preview
     }
@@ -53,7 +79,7 @@ main{
     background: #fff;
     box-shadow: 0 0 3px hsla(0,0,0,0.5);
     border-radius: 4px;
-    overflow: auto;
+    overflow: hidden;
   }
   > .preview {
     flex: 1;
