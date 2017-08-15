@@ -30,7 +30,7 @@
               <ArrayEditor v-bind:items="resume.awardsHistory" v-bind:labels="{award:'奖项', content:'详情'}" title="获奖情况"/>
           </li>
           <li v-bind:class="{active: currentTab === 5}">
-              <ContactMeEditor v-bind:contactMe="resume.contactMe"/>
+              <ContactsEditor v-bind:contacts="resume.contacts"/>
           </li>
       </ol>
   </div>
@@ -39,21 +39,16 @@
 <script>
 import ProfileEditor from './ProfileEditor'
 import ArrayEditor from './ArrayEditor'
-import ContactMeEditor from './ContactMeEditor'
+import ContactsEditor from './ContactsEditor'
 export default {
-  components:{ProfileEditor,ArrayEditor,ContactMeEditor},
+  components:{ProfileEditor,ArrayEditor,ContactsEditor},
   props: ['resume'],
   data(){
       return{
           currentTab: 0,
           icons: ['id-card','WORK','Book-Open','heart','jiangbei','phone'],
-          
       }
-   },
-   methods:{
-       
    }
-
 }
 </script>
 
