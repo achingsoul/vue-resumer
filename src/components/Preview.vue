@@ -22,7 +22,8 @@
       <ul>
         <li v-for="work in filter(resume.workExperience)">
           {{work.company}}
-          <br> {{work.content}}
+          <br> 
+          {{work.content}}
         </li>
       </ul>
     </section>
@@ -31,8 +32,10 @@
       <ul>
         <li v-for="study in filter(resume.studyHistory)">
           {{study.school}}
-          <br> {{study.duration}}
-          <br> {{study.degree}}
+          <br> 
+          {{study.duration}}
+          <br> 
+          {{study.degree}}
         </li>
       </ul>
     </section>
@@ -41,7 +44,8 @@
       <ul>
         <li v-for="project in filter(resume.projectHistory)">
           {{project.name}}
-          <br> {{project.content}}
+          <br> 
+          {{project.content}}
         </li>
       </ul>
     </section>
@@ -50,7 +54,8 @@
       <ul>
         <li v-for="awards in filter(resume.awardsHistory)">
           {{awards.award}}
-          <br> {{awards.content}}
+          <br> 
+          {{awards.content}}
         </li>
       </ul>
     </section>
