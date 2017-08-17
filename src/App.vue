@@ -90,7 +90,7 @@ body,
   overflow: hidden;
 }
 
-main {
+#app main {
   display: flex;
   flex: 1;
   background: #ddd;
