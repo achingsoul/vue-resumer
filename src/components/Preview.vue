@@ -3,59 +3,63 @@
     <h1>面试简历 - {{resume.profile.name || '姓名'}}</h1>
     <h2>基本信息</h2>
     <br>
-    <p>{{resume.profile.name || '姓名'}}</p>
+    <p>姓名：{{resume.profile.name}}</p>
     <br>
-    <p>{{resume.profile.city || '城市'}}</p>
+    <p>城市：{{resume.profile.city}}</p>
     <br>
-    <p>{{resume.profile.birth || '出生年月'}}</p>
+    <p>出生年月：{{resume.profile.birth}}</p>
     <br>
-    <p>{{resume.contacts.phone || '电话'}}</p>
+    <p>电话：{{resume.contacts.phone}}</p>
     <br>
-    <p>{{resume.contacts.qq || 'QQ'}}</p>
+    <p>QQ：{{resume.contacts.qq}}</p>
     <br>
-    <p>{{resume.contacts.email || '邮箱'}}</p>
+    <p>邮箱：{{resume.contacts.email}}</p>
     <br>
-    <p>{{resume.contacts.wechat || '微信'}}</p>
+    <p>微信：{{resume.contacts.wechat}}</p>
     <br>
+    
     <section v-if="filter(resume.workExperience).length > 0">
       <h2>工作经历</h2>
       <ul>
         <li v-for="work in filter(resume.workExperience)">
-          {{work.company}}
-          <br> 
-          {{work.content}}
+          <p>公司：{{work.company}}</p>
+          <br>
+          <p>工作内容：{{work.content}}</p>
         </li>
       </ul>
     </section>
+    
     <section v-if="filter(resume.studyHistory).length > 0">
       <h2>学习经历</h2>
       <ul>
         <li v-for="study in filter(resume.studyHistory)">
-          {{study.school}}
+          <p>学校：{{study.school}}</p>
           <br> 
-          {{study.duration}}
+          <p>时间：{{study.duration}}</p>
           <br> 
-          {{study.degree}}
+          <p>学位：{{study.degree}}</p>
         </li>
       </ul>
     </section>
+    
     <section v-if="filter(resume.projectHistory).length > 0">
       <h2>项目经历</h2>
       <ul>
         <li v-for="project in filter(resume.projectHistory)">
-          {{project.name}}
+          <p>项目名称：{{project.name}}</p>
           <br> 
-          {{project.content}}
+          <p>项目内容：{{project.content}}</p>
         </li>
       </ul>
     </section>
+    
     <section v-if="filter(resume.awardsHistory).length > 0">
       <h2>获奖情况</h2>
       <ul>
         <li v-for="awards in filter(resume.awardsHistory)">
-          {{awards.award}}
+          <p>奖项：{{awards.award}}</p>
           <br> 
-          {{awards.content}}
+          <p>详情：{{awards.content}}</p>
         </li>
       </ul>
     </section>
