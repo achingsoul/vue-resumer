@@ -111,23 +111,29 @@ body,
     overflow: auto;
   }
 }
-.previewMode > #topbar {
-  display: none;
-}
-.previewMode #editor {
-  display: none;
-}
-.previewMode #preview{
-  max-width: 800px;
-  margin: 32px auto;
-}
-#exitPreview{
-  display: none;
-}
-.previewMode #exitPreview{
-  display: inline-block;
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
+#app{
+  >#exitPreview{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: none;
+  }
+  &.previewMode{
+    >.topbar{
+      display: none;
+    }
+    >main{
+      >.editor{
+        display: none;
+      }
+      >.preview{
+        margin: 24px auto;
+        max-width: 64%;
+      }
+    }
+    >#exitPreview{
+      display: block;
+    }
+  }
 }
 </style>
